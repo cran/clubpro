@@ -7,7 +7,7 @@
 individual_results(m, digits)
 }
 \arguments{
-\item{m}{an object of class "clubprofit" produced by \code{classify()}}
+\item{m}{an object of class "clubprofit" produced by \code{club()}}
 
 \item{digits}{an integer}
 }
@@ -23,10 +23,6 @@ Returns a data.frame containing predicted classifications and classification
 accuracy for each individual observation.
 }
 \examples{
-a <- sample(1:5, 20, replace = TRUE)
-b <- rep(c("group1", "group2"), each = 10)
-b <- factor(b)
-mod <- club(a, b)
+mod <- club(rate ~ dose, data = caffeine)
 individual_results(mod)
-individual_results(mod, digits = 3)
 }

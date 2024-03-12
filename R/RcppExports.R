@@ -21,15 +21,19 @@ binary_procrustes_rotation <- function(obs, target_mat, normalise_cols) {
     .Call(`_clubpro_binary_procrustes_rotation`, obs, target_mat, normalise_cols)
 }
 
+row_max <- function(X) {
+    .Call(`_clubpro_row_max`, X)
+}
+
 c_pcc <- function(obs, target_indicator_mat, imprecision, normalise_cols) {
     .Call(`_clubpro_c_pcc`, obs, target_indicator_mat, imprecision, normalise_cols)
 }
 
-shuffle_obs_pccs <- function(obs, target_indicator_mat, imprecision, nreps, normalise_cols) {
-    .Call(`_clubpro_shuffle_obs_pccs`, obs, target_indicator_mat, imprecision, nreps, normalise_cols)
+shuffle_obs_pccs <- function(obs, target_indicator_mat, imprecision, nreps, normalise_cols, display_progress) {
+    .Call(`_clubpro_shuffle_obs_pccs`, obs, target_indicator_mat, imprecision, nreps, normalise_cols, display_progress)
 }
 
-random_dat_pccs <- function(obs, target_indicator_mat, imprecision, nreps, normalise_cols) {
-    .Call(`_clubpro_random_dat_pccs`, obs, target_indicator_mat, imprecision, nreps, normalise_cols)
+random_dat_pccs <- function(obs, target_indicator_mat, imprecision, nreps, normalise_cols, display_progress) {
+    .Call(`_clubpro_random_dat_pccs`, obs, target_indicator_mat, imprecision, nreps, normalise_cols, display_progress)
 }
 

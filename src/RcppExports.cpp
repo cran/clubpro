@@ -68,6 +68,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// row_max
+arma::vec row_max(arma::mat X);
+RcppExport SEXP _clubpro_row_max(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(row_max(X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // c_pcc
 double c_pcc(arma::vec obs, arma::mat target_indicator_mat, int imprecision, bool normalise_cols);
 RcppExport SEXP _clubpro_c_pcc(SEXP obsSEXP, SEXP target_indicator_matSEXP, SEXP imprecisionSEXP, SEXP normalise_colsSEXP) {
@@ -83,32 +94,34 @@ BEGIN_RCPP
 END_RCPP
 }
 // shuffle_obs_pccs
-arma::vec shuffle_obs_pccs(arma::vec obs, arma::mat target_indicator_mat, int imprecision, int nreps, bool normalise_cols);
-RcppExport SEXP _clubpro_shuffle_obs_pccs(SEXP obsSEXP, SEXP target_indicator_matSEXP, SEXP imprecisionSEXP, SEXP nrepsSEXP, SEXP normalise_colsSEXP) {
+arma::vec shuffle_obs_pccs(arma::vec obs, arma::mat target_indicator_mat, int imprecision, size_t nreps, bool normalise_cols, bool display_progress);
+RcppExport SEXP _clubpro_shuffle_obs_pccs(SEXP obsSEXP, SEXP target_indicator_matSEXP, SEXP imprecisionSEXP, SEXP nrepsSEXP, SEXP normalise_colsSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::vec >::type obs(obsSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type target_indicator_mat(target_indicator_matSEXP);
     Rcpp::traits::input_parameter< int >::type imprecision(imprecisionSEXP);
-    Rcpp::traits::input_parameter< int >::type nreps(nrepsSEXP);
+    Rcpp::traits::input_parameter< size_t >::type nreps(nrepsSEXP);
     Rcpp::traits::input_parameter< bool >::type normalise_cols(normalise_colsSEXP);
-    rcpp_result_gen = Rcpp::wrap(shuffle_obs_pccs(obs, target_indicator_mat, imprecision, nreps, normalise_cols));
+    Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(shuffle_obs_pccs(obs, target_indicator_mat, imprecision, nreps, normalise_cols, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
 // random_dat_pccs
-arma::vec random_dat_pccs(arma::vec obs, arma::mat target_indicator_mat, int imprecision, int nreps, bool normalise_cols);
-RcppExport SEXP _clubpro_random_dat_pccs(SEXP obsSEXP, SEXP target_indicator_matSEXP, SEXP imprecisionSEXP, SEXP nrepsSEXP, SEXP normalise_colsSEXP) {
+arma::vec random_dat_pccs(arma::vec obs, arma::mat target_indicator_mat, int imprecision, size_t nreps, bool normalise_cols, bool display_progress);
+RcppExport SEXP _clubpro_random_dat_pccs(SEXP obsSEXP, SEXP target_indicator_matSEXP, SEXP imprecisionSEXP, SEXP nrepsSEXP, SEXP normalise_colsSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::vec >::type obs(obsSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type target_indicator_mat(target_indicator_matSEXP);
     Rcpp::traits::input_parameter< int >::type imprecision(imprecisionSEXP);
-    Rcpp::traits::input_parameter< int >::type nreps(nrepsSEXP);
+    Rcpp::traits::input_parameter< size_t >::type nreps(nrepsSEXP);
     Rcpp::traits::input_parameter< bool >::type normalise_cols(normalise_colsSEXP);
-    rcpp_result_gen = Rcpp::wrap(random_dat_pccs(obs, target_indicator_mat, imprecision, nreps, normalise_cols));
+    Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(random_dat_pccs(obs, target_indicator_mat, imprecision, nreps, normalise_cols, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -119,9 +132,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clubpro_normalise_rows", (DL_FUNC) &_clubpro_normalise_rows, 1},
     {"_clubpro_dichotemise_matrix", (DL_FUNC) &_clubpro_dichotemise_matrix, 1},
     {"_clubpro_binary_procrustes_rotation", (DL_FUNC) &_clubpro_binary_procrustes_rotation, 3},
+    {"_clubpro_row_max", (DL_FUNC) &_clubpro_row_max, 1},
     {"_clubpro_c_pcc", (DL_FUNC) &_clubpro_c_pcc, 4},
-    {"_clubpro_shuffle_obs_pccs", (DL_FUNC) &_clubpro_shuffle_obs_pccs, 5},
-    {"_clubpro_random_dat_pccs", (DL_FUNC) &_clubpro_random_dat_pccs, 5},
+    {"_clubpro_shuffle_obs_pccs", (DL_FUNC) &_clubpro_shuffle_obs_pccs, 6},
+    {"_clubpro_random_dat_pccs", (DL_FUNC) &_clubpro_random_dat_pccs, 6},
     {NULL, NULL, 0}
 };
 

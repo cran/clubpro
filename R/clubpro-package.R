@@ -9,12 +9,22 @@ NULL
 NULL
 
 ## usethis namespace: start
+#' @importFrom grDevices palette
+## usethis namespace: end
+NULL
+
+## usethis namespace: start
 #' @importFrom stats na.omit
 ## usethis namespace: end
 NULL
 
 ## usethis namespace: start
 #' @importFrom stats median
+## usethis namespace: end
+NULL
+
+## usethis namespace: start
+#' @importFrom lattice dotplot
 ## usethis namespace: end
 NULL
 
@@ -30,5 +40,16 @@ NULL
 
 ## usethis namespace: start
 #' @importFrom lattice panel.histogram
+## usethis namespace: end
+NULL
+
+## usethis namespace: start
+#' @importFrom lattice panel.abline
+## usethis namespace: end
+NULL
+
+
+## usethis namespace: start
+#' @importFrom graphics mosaicplot
 ## usethis namespace: end
 NULL

@@ -2,21 +2,22 @@
 % Please edit documentation in R/classify.R
 \name{club}
 \alias{club}
-\title{Classify observations}
+\title{Classify observations.}
 \usage{
 club(
-  y,
-  x,
-  imprecision = 0,
-  nreps = 1000L,
-  normalise_cols = TRUE,
-  reorder_obs = "shuffle"
+  f,
+  data,
+  imprecision,
+  nreps,
+  normalise_cols,
+  reorder_obs,
+  display_progress
 )
 }
 \arguments{
-\item{y}{a factor vector of observations.}
+\item{f}{a formula.}
 
-\item{x}{a factor vector of target groups.}
+\item{data}{a data.frame.}
 
 \item{imprecision}{a number indicting the margin of imprecision allowed in classification.}
 
@@ -25,6 +26,8 @@ club(
 \item{normalise_cols}{a boolean indicating whether to normalise matrix columns.}
 
 \item{reorder_obs}{a string indicating the method for reordering observations to calculate c-values.}
+
+\item{display_progress}{a boolean indictaing whether a progress bar should be displayed.}
 }
 \value{
 an object of class "clubprofit" is a list containing the folllowing
@@ -46,9 +49,5 @@ components:
 rotation.
 }
 \examples{
-a <- sample(1:5, 20, replace = TRUE)
-b <- rep(c("group1", "group2"), each = 10)
-b <- factor(b)
-mod <- club(a, b)
-mod <- club(a, b, nreps = 200L)
+mod <- club(rate ~ dose, data = caffeine)
 }
