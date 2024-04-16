@@ -1,6 +1,9 @@
-# clubpro (development version)
+# clubpro 0.6.1
 
-* Added a `NEWS.md` file to track changes to the package.
+## Minor improvemnts and big fixes
+
+* Added a threshold() function to determine optimal category boundary for binary classification problems.
+* Fixed small image sizes in vignette.
 
 # clubpro 0.6.0
 

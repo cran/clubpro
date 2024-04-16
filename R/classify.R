@@ -155,6 +155,8 @@ club.formula <- function(f, data, imprecision = 0, nreps = 1000L, normalise_cols
                           x = x,
                           y_num = obs_num,
                           nreps = nreps,
+                          imprecision = imprecision,
+                          normalise_cols = normalise_cols,
                           call = match.call()),
                      class = "clubprofit"))
 }

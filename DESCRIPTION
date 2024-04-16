@@ -1,7 +1,7 @@
 Package: clubpro
 Type: Package
 Title: Classification Using Binary Procrustes Rotation
-Version: 0.6.0
+Version: 0.6.1
 Authors@R: person("Timothy", "Beechey", email = "tim.beechey@proton.me",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8858-946X"))
 Description: Implements a classification method described by Grice (2011, ISBN:978-0-12-385194-9) using
@@ -19,8 +19,8 @@ SystemRequirements: C++17
 Depends: R (>= 2.10)
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2024-03-12 11:28:30 UTC; tim
+Packaged: 2024-04-16 13:37:16 UTC; tim
 Author: Timothy Beechey [aut, cre] (<https://orcid.org/0000-0001-8858-946X>)
 Maintainer: Timothy Beechey <tim.beechey@proton.me>
 Repository: CRAN
-Date/Publication: 2024-03-12 13:20:06 UTC
+Date/Publication: 2024-04-16 14:00:08 UTC

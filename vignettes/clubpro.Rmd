@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ## Background
 
-`clubpro` is an implementation of a subset of the methods described in Grice (2011) for classification of observations using binary procrustes rotation. Binary procrustes rotation can be used to quantify how well observed data can be classified into known categories. A high degree of classification accuracy indicates that the ordering of the observed data is well explained by the particular categories used.
+`clubpro` is an implementation of a subset of the methods described in Grice (2011) for classification of observations using binary procrustes rotation. Binary procrustes rotation can be used to quantify how well observed data can be classified into known categories. A high degree of classification accuracy indicates that the ordering of the observed data is well explained by particular categories or experimental conditions.
 
 ## Set up
 
@@ -26,13 +26,13 @@ knitr::opts_chunk$set(
 library(clubpro)
 ```
 
-The plots provided by `clubpro` use the colour palette loaded in the current R session. You may specify the colours you wish to use by passing a vector of colours to `palette()`.
+The plots provided by `clubpro` use the colour palette loaded in the current R session. You may specify the plot colours by passing a vector of colours to `palette()`.
 
 ```{r set_palette}
 palette(c("#0073C2", "#EFC000", "#868686"))
 ```
 
-## Classifying jellyfish catch location by size
+## Classifying catch location by jellyfish size
 
 Hand et. at. (1994) provide data on the `width` and `length` in mm of jellyfish caught at two `location`s in New South Wales, Australia: `Dangar Island` and `Salamander Bay`.
 
@@ -64,8 +64,20 @@ summary(mod)
 
 The classification of the observed data can be visualised by plotting the model object using the `plot()` function.
 
-```{r plot_jellyfish}
+```{r plot_jellyfish, fig.width=8, fig.height=5}
 plot(mod)
+```
+
+Plotting the classification results shows that observed `width` values of 11 mm and smaller are consistently placed into the `Dangar Island` category, while observed `width` values of at least 16.5 mm are all placed into the `Salamader Bay` category. From these results we can see that the boundary between the two categories is somewhere between 11 and 16.5. However, it is not clear from the plot exactly where the most likely boundary falls. Grice et. al. (2016) suggest that in the case of binary clasification, the optimal category boundary can be determined by calculating a PCC for each possible boundary location. This can be achieved using the `threshold()` function.
+
+```{r compute_threshold}
+threshold(mod)
+```
+
+Plotting the object returned by `threshold()` shows that three adjacent category boundary locations produce equal maximum PCCs. This indicates that the optimal category boundary for classification occurs between 11 and 13 mm.
+
+```{r plot_theshold, fig.width=8, fig.height=5}
+plot(threshold(mod))
 ```
 
 For each observation, a classification strength index (CSI) between 0 and 1 is returned. A value of 1 indicates that an observed value was matched perfectly by the rotation, whereas lower CSI values indicate that observations were matched less well. The CSI values can be accessed using the `csi()` function, or visualised by plotting the object returned by a call to the `csi()` function.
@@ -83,7 +95,7 @@ predict(mod)
 
 These predictions can be visualised as a mosaic plot by plotting the object returned by the `predict()` function.
 
-```{r plot_predictions}
+```{r plot_predictions, fig.width=8, fig.height=5}
 plot(predict(mod))
 ```
 
@@ -95,18 +107,20 @@ accuracy(mod)
 
 As with predicted categories, prediction accuracy can also be plotted in the form of a mosaic plot using `plot(accuracy())`.
 
-```{r plot_accuracy}
+```{r plot_accuracy, fig.width=8, fig.height=5}
 plot(accuracy(mod))
 ```
 
 The calculation of the chance-value as the frequency of occurance PCCs from randomly reordered data at least as high as the PCC of the observed data ordering can be visualised by plotting the output of the `pcc_replicates()` function. Calling the `plot()` function on the output of `pcc_replicates()` produces a histogram of the PCCs resulting from all random orderings of the data. The chance value calculated by the model is the frequency with which PCCs produced from random reorderings of the data are at least as high as the PCC produced by the observed data ordering, indicated in the plot by a dashed vertical line.
 
-```{r plot_cval_dist}
+```{r plot_cval_dist, fig.width=8, fig.height=5}
 plot(pcc_replicates(mod))
 ```
 
 ## References
 
-Grice, J. W. (2011). Observation oriented modeling: Analysis of cause in the behavioral sciences. Academic Press.
+Grice, J. W. (2011). _Observation oriented modeling: Analysis of cause in the behavioral sciences_. Academic Press.
 
-Hand, D. J., Daly, F., Lunn, A. D., McConway, K. J. and Ostrowski, E. (1994). A Handbook of Small Data Sets. Chapman & Hall.
+Grice, J. W., Cota, L. D., Barrett, P. T., Wuensch, K. L., & Poteat, G. M. (2016). A Simple and Transparent Alternative to Logistic Regression. _Advances in Social Sciences Research Journal_, 3(7), 147–165.
+
+Hand, D. J., Daly, F., Lunn, A. D., McConway, K. J. and Ostrowski, E. (1994). _A Handbook of Small Data Sets_. Chapman & Hall.
