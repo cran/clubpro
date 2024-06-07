@@ -225,7 +225,7 @@ expect_silent(summary(m6))
 
 
 # non-exported functions
-expect_identical(clubpro:::to_indicator_matrix(c(1,2,3)), matrix(c(1,0,0,0,1,0,0,0,1), nrow=3, byrow=TRUE))
+expect_identical(clubpro:::to_indicator_matrix(c(1,2,3)), matrix(c(0,1,0,0,0,0,1,0,0,0,0,1), nrow=3, byrow=TRUE))
 
 expect_equal(round(clubpro:::c_pcc(test_dat_int$items, clubpro:::to_indicator_matrix(test_dat_int$condition), 
                    imprecision = 0, normalise_cols = TRUE), 2), 83.33)

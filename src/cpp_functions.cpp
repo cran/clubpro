@@ -25,10 +25,10 @@
 // [[Rcpp::export]]
 arma::mat to_indicator_matrix(arma::vec v) {
     auto n {v.n_elem};
-    auto m {v.max()};
+    auto m {v.max() + 1};
     arma::mat A(n, m);
     for (size_t i {0}; i < n; i++) {
-        A(i, v(i)-1.0) = 1.0;
+        A(i, v(i)) = 1.0;
     }
     return A;
 }

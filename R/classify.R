@@ -27,7 +27,7 @@ classify <- function(obs, target, imprecision, normalise_cols, display_progress)
     matches <- 0
 
     for (i in seq_len(dim(binary_matrix)[1])) {
-        predicted_classification[i] <- paste0(levels(target)[which(binary_matrix[i, ] == 1)], collapse = "|")
+        predicted_classification[i] <- paste0(levels(target)[(which(binary_matrix[i, ] == 1)) - 1], collapse = "|")
 
         if (sum(binary_matrix[i, ]) == 1) {
             if (abs(which.max(binary_matrix[i, ]) - which.max(target_indicator_mat[i, ])) <= imprecision) {

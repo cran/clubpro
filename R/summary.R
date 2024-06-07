@@ -53,7 +53,7 @@ print.summary.clubprofit <- function(x, ..., digits = 2L) {
 
     cat("********** Model Summary **********\n\n")
     cat("----- Classification Results -----\n")
-    cat("Observations: ", x$nobs, "\n")
+    cat("Observations: ", x$n_obs, "\n")
     cat("Missing observations: ", x$missing_obs, "\n")
     cat("Target groups: ", x$n_groups, "\n")
     cat("Correctly classified observations: ", x$n_correct, "\n")
